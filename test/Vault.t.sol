@@ -18,35 +18,39 @@ contract VaultTest is Test {
         weth = new WETH9();
         vault = new Vault(address(weth));
 
-        vm.deal(user1, 5 ether);
+        vm.deal(user1, 20 ether);
         mockToken.mint(user1, 1000);
     }
 
-    function testdepositEth() public {
+    function testdepositEth(uint ethAmount) public {
+        uint input = bound(ethAmount, 1 ether, 4 ether);
         vm.prank(user1);
-        vault.depositETH{value: 0.2 ether}();
+        vault.depositETH{value: input}();
     }
 
-    function testwithdrawEth() public {
+    function testwithdrawEth(uint ethAmount) public {
+        uint input = bound(ethAmount, 1 ether, 4 ether);
         vm.startPrank(user1);
 
-        vault.depositETH{value: 0.2 ether}();
+        vault.depositETH{value: input}();
 
-        vault.withdrawETH(0.1 ether);
+        vault.withdrawETH(input);
     }
 
-    function testwrapEth() public {
+    function testwrapEth(uint ethAmount) public {
+        uint input = bound(ethAmount, 1 ether, 4 ether);
         vm.startPrank(user1);
-        vault.depositETH{value: 0.2 ether}();
-        vault.wrapETH(0.1 ether);
+        vault.depositETH{value: input}();
+        vault.wrapETH(input);
     }
 
-    function testunwrapEth() public {
+    function testunwrapEth(uint ethAmount) public {
+        uint input = bound(ethAmount, 1 ether, 4 ether);
         vm.startPrank(user1);
-        vault.depositETH{value: 0.2 ether}();
-        vault.wrapETH(0.1 ether);
+        vault.depositETH{value: input}();
+        vault.wrapETH(input);
 
-        vault.unwrapETH(0.1 ether);
+        vault.unwrapETH(input);
     }
 
     function testdepositERC20() public {
