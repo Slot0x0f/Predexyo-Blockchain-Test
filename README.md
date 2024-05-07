@@ -8,10 +8,6 @@ The Repo consists of:
 -   **Vault.t.sol**: A test for the vault contract.
 
 
-## Documentation
-
-https://book.getfoundry.sh/
-
 ## Usage
 
 ### Build

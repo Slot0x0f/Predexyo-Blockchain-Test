@@ -31,9 +31,7 @@ contract VaultTest is Test {
     function testwithdrawEth(uint256 ethAmount) public {
         uint256 input = bound(ethAmount, 1 ether, 4 ether);
         vm.startPrank(user1);
-
         vault.depositETH{value: input}();
-
         vault.withdrawETH(input);
     }
 
