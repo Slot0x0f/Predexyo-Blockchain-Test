@@ -22,14 +22,14 @@ contract VaultTest is Test {
         mockToken.mint(user1, 1000);
     }
 
-    function testdepositEth(uint ethAmount) public {
-        uint input = bound(ethAmount, 1 ether, 4 ether);
+    function testdepositEth(uint256 ethAmount) public {
+        uint256 input = bound(ethAmount, 1 ether, 4 ether);
         vm.prank(user1);
         vault.depositETH{value: input}();
     }
 
-    function testwithdrawEth(uint ethAmount) public {
-        uint input = bound(ethAmount, 1 ether, 4 ether);
+    function testwithdrawEth(uint256 ethAmount) public {
+        uint256 input = bound(ethAmount, 1 ether, 4 ether);
         vm.startPrank(user1);
 
         vault.depositETH{value: input}();
@@ -37,15 +37,15 @@ contract VaultTest is Test {
         vault.withdrawETH(input);
     }
 
-    function testwrapEth(uint ethAmount) public {
-        uint input = bound(ethAmount, 1 ether, 4 ether);
+    function testwrapEth(uint256 ethAmount) public {
+        uint256 input = bound(ethAmount, 1 ether, 4 ether);
         vm.startPrank(user1);
         vault.depositETH{value: input}();
         vault.wrapETH(input);
     }
 
-    function testunwrapEth(uint ethAmount) public {
-        uint input = bound(ethAmount, 1 ether, 4 ether);
+    function testunwrapEth(uint256 ethAmount) public {
+        uint256 input = bound(ethAmount, 1 ether, 4 ether);
         vm.startPrank(user1);
         vault.depositETH{value: input}();
         vault.wrapETH(input);
